@@ -2,9 +2,40 @@
 <html>
 <body>
 
-<h1>Bi-Directional Path Tracer</h1>
+<h1>15462 Computer Graphics : Assigment 5 : Bi-Directional Path Tracer</h1>
+<p>
+</p>
 
-<p></p>
+<h2>Riya Savla</h2>
+
+<h3>Description</h3>
+
+<p>
+	I extended the reference implementation of the Assigment 3 Path Tracer to include support for Bi-directional Path Tracing. Rays are shot into the scene both from the camera and the light sources and after a certain number bounces each are made to connect. If a ray from the point where the camera path terminated is able to meet the light path without being occluded by other scene geometry, then the light path's contributes to the total output radiance along that path. 
+</p>
+
+<p>
+	Bi-directional Path Tracing is particularly useful for scenes in which there is not much direct illumination, where light from the light sources does not directly reach most of the scene geometry. Scenes like this rendered using simple Path Tracing techniques show a higher degree of variance as compared to solutions provided by Bi-directional Path Tracing. 
+</p>
+
+<p>
+	To demonstrate this, I modified the Cornell Box with lambertian spheres so that the Area Light is smaller and is directed towards the ceiling. Only a very small portion of the celing is directly illuminated and the rest of the scene is only illuminated by indirect light bouncing off of the celing. I use this example to show how Bi-directional can give a better solution for such scenes. 
+    
+    Here is an image renedred using the Assigment 3 Reference implementation using 6400 samples per pixel and with maximum Camera Ray Path Length 6. 
+
+    <img> </img>
+
+    In contrast, this is an image renedred using my Bi-directional implementation using 6400 samples per pixel, maximum Camera Ray Path Length 4 and Light Path length 2. There is visibly less noise (less variance) in the output image and overall, the scene is better illuminated.
+
+    <img> </img>
+
+</p>
+
+<h3>Intructions on how to Run </h3>
+<p> This remains mostly the same as it was for Assigment 3. I added an extra commandline option -n that lets you specify the maximum Light Path length in addition to -m from Assigment 3. I have also included the dae file I modified, named 'CBspheres_lambertian_bidir_withlight.dae' in my handin directory.</p>
+
+
+<h3>More Images</h3>
 
 </body>
 </html>
