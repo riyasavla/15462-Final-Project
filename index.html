@@ -22,9 +22,9 @@ div.container {
 <p>
 	I extended the reference implementation of the Assigment 3 Path Tracer to include support for Bi-directional Path Tracing. Rays shot into the scene originate both from the camera and the light sources. After a certain number bounces each, the two types of Rays are made to connect. If a ray from the point where the camera path terminated is able to meet the light path without being occluded by other scene geometry, then the light path contribution is added to the total output radiance along that path. 
     <br>
-	Bi-directional Path Tracing is particularly useful for scenes where light from the light sources does not directly reach most of the scene geometry. Scenes like this rendered using simple Path Tracing techniques show a higher degree of variance as compared to solutions provided by Bi-directional Path Tracing. 
+	Bi-directional Path Tracing is particularly useful for scenes where light from the light sources does not directly reach most of the scene geometry. Scenes like this rendered using Standard Path Tracing techniques show a higher degree of variance as compared to solutions provided by Bi-directional Path Tracing. 
     <br>
-	To demonstrate this, I modified the Cornell Box with lambertian spheres so that the Area Light is smaller and is directed towards the ceiling. Only a small portion of the celing is directly illuminated. The rest of the scene is illuminated by indirect light bouncing off of the celing. 
+	To demonstrate this, I modified the Cornell Box with lambertian spheres so that the Area Light is smaller and is directed towards the ceiling. Only a small portion of the celing is directly illuminated. The rest of the scene is illuminated by indirect light bouncing off of the ceiling. 
     <br>
     <br>
     On the left is an image renedred using the Assigment 3 Reference implementation using 6400 samples per pixel and with maximum Camera Ray Path Length 6. In contrast, on the right is an image renedred using my Bi-directional implementation using 6400 samples per pixel, maximum Camera Ray Path Length 4 and Light Path length 2. There is visibly less noise (less variance) in the output image and overall, the scene is better lit.
@@ -47,37 +47,66 @@ div.container {
 </p>
 
 <h3>Implementation </h3>
+<p>
+	<ul>
+		<li>I implemented a light ray generator that returns a random ray originating from the light source and returns the Spectrum of light emitted in that direction, along with the probability of picking said random direction. This is used as the starting point of tracing rays from the light sources.
+
+		<li>I modified trace_ray() so that when the camera path is terminated, instead of returning outgoing radiance immediately, a light path is traced for each light soirce in the scene. For each source, a light ray is generated originating from the light and the recursive light path tracing begins.
+
+        <li>The recursive light tracing routine calculates the intersection of the light ray with the scene. If there is no intersection, the call is terminated and 0 radiance is returned since this path can never make it back to the camera. 
+
+        <li>The irradiance carried by the light path is weighed by the BRDF of the surface of the intersection point. This becomes the new irradiance carried by the light path and is passed on to the subsequent recursive call with the reflected direction of the light ray.
+
+        <li>
+   
+	</ul>
+
+</p>
 
 
 <h3>How to Run </h3>
-<p> This remains mostly the same as it was for Assigment 3. I added an extra commandline option -n that lets you specify the maximum Light Path length. The -m option from Assigment 3 specifies the maximum Camera Path length. The dae file I modified, named 'CBspheres_lambertian_bidir_withlight.dae' is included in my handin directory.</p>
+<p> Build the same way as for Assigment 3. I added an extra commandline option -n that lets you specify the maximum Light Path length. The -m option from Assigment 3 specifies the maximum Camera Path length. The dae file I modified, named 'CBspheres_lambertian_bidir_withlight.dae', is included in my handin directory.</p>
 
 
 <h3>More Images</h3>
     <div class="container">
     <figure>
     	<img src="CB512m4PT.png">
-    	<figcaption>512 SSP m 4 Time: 207.29s</figcaption>
+    	<figcaption>Standard 512 SSP m 4 Time: 207.29s</figcaption>
 	</figure>
     </div>
         <div class="container">
     <figure>
     	<img src="CB512m2n2BD.png">
-    	<figcaption>512 SSP m 2 n 2 Time: 505.75s</figcaption>
+    	<figcaption>Bi-Dir 512 SSP m 2 n 2 Time: 505.75s</figcaption>
 	</figure>
     </div>
 
     <div class="container">
     <figure>
     	<img src="CB256m4PT.png">
-    	<figcaption>256 SSP m 4 Time: 102.38s</figcaption>
+    	<figcaption>Standard 256 SSP m 4 Time: 102.38s</figcaption>
 	</figure>
     </div>
         <div class="container">
     <figure>
     	<img src="CB256m3n1BD.png">
-    	<figcaption>512 SSP m 3 n 1 Time: 210.74s</figcaption>
+    	<figcaption>Bi-Dir 256 SSP m 3 n 1 Time: 210.74s</figcaption>
 	</figure>
+
     </div>
+
+ <h3>Things to Note </h3>
+
+ <p>
+	<ul>
+		<li> The output image is brighter when the light path is shorter. This is beacuse less light gets abosorbed due to bounces off diffuse surafces before light paths are connected to camera paths.
+
+		<li> There are weird artifacts on the spheres' surafces when the light path is only 1 unit long. I imagine that this might be due to the fact that camera paths that terminate below the "equator" on the spheres can never be connected to light paths since light paths end points are located on a very small region of the ceiling. 
+         
+	</ul>
+
+</p>
+
 </body>
 </html>
