@@ -6,10 +6,13 @@ div.container {
   display:inline-block;
 }
 
-body {
-    display: inline-block;
-    margin: 0px auto;
+body
+{
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
 }
+
 
 </style>
 
@@ -20,7 +23,7 @@ body {
 </p>
 
 <h2>Riya Savla</h2>
-<h2>Andrew ID: rds </h2>
+<h3>Andrew ID: rds </h3>
 
 <h3>Description</h3>
 
@@ -31,19 +34,18 @@ body {
 	To demonstrate this, I modified the Cornell Box with lambertian spheres so that the Area Light is smaller and is directed towards the ceiling. Only a small portion of the celing is directly illuminated. The rest of the scene is illuminated by indirect light bouncing off of the ceiling. 
     <br>
     <br>
-    On the left is an image renedred using the Assigment 3 Reference implementation using 6400 samples per pixel and with maximum Camera Ray Path Length 6. In contrast, on the right is an image renedred using my Bi-directional implementation using 3200 samples per pixel, maximum Camera Ray Path Length 4 and Light Path length 2. There is visibly less noise (less variance) in the output image and overall, the scene is better lit.
-    <br>
+    Here is an image renedred using the Assigment 3 Reference implementation using 6400 samples per pixel and with maximum Camera Path Length 6. 
     <div class="container">
     <figure>
-    	<img src="CB6400m6PT.png" width="80%" height="80%">
+    	<img src="CB6400m6PT.png">
     	<figcaption>Rendering Time: 4681.4274 s</figcaption>
 	</figure>
     </div>
     <br>
-    <br>
+    In contrast, this is an image renedred using my Bi-directional implementation using 3200 samples per pixel, maximum Camera Ray Path Length 4 and Light Path length 2. There is visibly less noise (less variance) in the output image and overall, the scene is better lit.
     <div class="container">
     <figure>
-    	<img src="CB6400m6PT.png" width="80%" height="80%">
+    	<img src="CB6400m6PT.png">
     	<figcaption>Rendering Time: 4681.4274 s</figcaption>
 	</figure>
     </div>
@@ -118,7 +120,9 @@ body {
 <h3>Refereneces</h3>
  <p>
 	<ul>
-		<li>
+		<li>Veach, Eric, and Leonidas Guibas. "Bidirectional Estimators for Light Transport."
+	    <br>
+	    <li>Pharr, Matt, and Greg Humphreys. <i>Physically Based Rendering from Theory to Implementation.</i>
          
 	</ul>
 </p>
