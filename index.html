@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+div.container {
+  display:inline-block;
+}
+
+p {
+  text-align:center;
+}
+</style>
+
 <body>
 
 <h1>15462 Computer Graphics : Assigment 5 : Bi-Directional Path Tracer</h1>
@@ -21,20 +32,24 @@
     <br>
     Here is an image renedred using the Assigment 3 Reference implementation using 6400 samples per pixel and with maximum Camera Ray Path Length 6. 
     <br>
+    <div class="container">
     <figure>
     	<img src="CB6400m6PT.png">
-    	<figcaption>Rendering Time : 4681.4274 s</figcaption>
+    	<figcaption>Rendering Time: 4681.4274 s</figcaption>
 	</figure>
+    </div>
     <br>
     In contrast, this is an image renedred using my Bi-directional implementation using 6400 samples per pixel, maximum Camera Ray Path Length 4 and Light Path length 2. There is visibly less noise (less variance) in the output image and overall, the scene is better lit.
     <br>
     <br>
     <figure>
     	<img >
-    	<figcaption>Rendering Time : 4681.4274 s</figcaption>
+    	<figcaption>Rendering Time: 4681.4274 s</figcaption>
 	</figure>
 
 </p>
+
+<h3>Implementation </h3>
 
 
 <h3>How to Run </h3>
@@ -42,6 +57,18 @@
 
 
 <h3>More Images</h3>
+    <div class="container">
+    <figure>
+    	<img src="CB512m4PT.png">
+    	<figcaption>512 SSP m 4 Time: 207.29s</figcaption>
+	</figure>
+    </div>
+        <div class="container">
+    <figure>
+    	<img src="CB512m2n2BD.png">
+    	<figcaption>512 SSP m 2 n 2 Time: 505.75s</figcaption>
+	</figure>
+    </div>
 
 </body>
 </html>
